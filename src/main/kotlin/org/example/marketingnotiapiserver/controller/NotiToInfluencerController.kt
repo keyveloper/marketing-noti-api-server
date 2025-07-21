@@ -4,9 +4,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import org.example.marketingnotiapiserver.dto.CreateNotiToInfluencerApiRequest
 import org.example.marketingnotiapiserver.dto.CreateNotiToInfluencerResponseFromServer
 import org.example.marketingnotiapiserver.dto.GetNotiToInfluencersByInfluencerIdResponseFromServer
-import org.example.marketingnotiapiserver.dto.GetNotiToInfluencersByTypeResponseFromServer
 import org.example.marketingnotiapiserver.enums.MSAServiceErrorCode
-import org.example.marketingnotiapiserver.enums.NotiToInfluencerType
 import org.example.marketingnotiapiserver.service.NotiToInfluencerService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -36,25 +34,6 @@ class NotiToInfluencerController(
             msaServiceErrorCode = MSAServiceErrorCode.OK,
             errorMessage = null,
             logics = "createNotiToInfluencer",
-            result = result
-        )
-
-        return ResponseEntity.ok(response)
-    }
-
-    @GetMapping("/type/{type}")
-    fun getNotiToInfluencersByType(
-        @PathVariable type: NotiToInfluencerType
-    ): ResponseEntity<GetNotiToInfluencersByTypeResponseFromServer> {
-        logger.info { "GET /api/v1/noti-to-influencer/type/$type" }
-
-        val result = notiToInfluencerService.getNotiToInfluencersByType(type)
-
-        val response = GetNotiToInfluencersByTypeResponseFromServer.of(
-            httpStatus = HttpStatus.OK,
-            msaServiceErrorCode = MSAServiceErrorCode.OK,
-            errorMessage = null,
-            logics = "getNotiToInfluencersByType",
             result = result
         )
 

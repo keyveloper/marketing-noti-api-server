@@ -4,7 +4,6 @@ import org.example.marketingnotiapiserver.dto.NotiToInfluencerEntity
 import org.example.marketingnotiapiserver.dto.NotiToInfluencerMetadata
 import org.example.marketingnotiapiserver.enums.NotiToInfluencerType
 import org.example.marketingnotiapiserver.table.NotiToInfluencerTable
-import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -15,29 +14,17 @@ class NotiToInfluencerRepository {
         influencerId: String,
         notiToInfluencerType: NotiToInfluencerType
     ): NotiToInfluencerMetadata {
-        return transaction {
-            val entity = NotiToInfluencerEntity.new {
-                this.message = message
-                this.influencerId = influencerId
-                this.notiToInfluencerType = notiToInfluencerType
-            }
-            NotiToInfluencerMetadata.fromEntity(entity)
+        val entity = NotiToInfluencerEntity.new {
+            this.message = message
+            this.influencerId = influencerId
+            this.notiToInfluencerType = notiToInfluencerType
         }
-    }
-
-    fun findByType(notiToInfluencerType: NotiToInfluencerType): List<NotiToInfluencerMetadata> {
-        return transaction {
-            NotiToInfluencerEntity.find {
-                NotiToInfluencerTable.notiToInfluencerType eq notiToInfluencerType
-            }.map { NotiToInfluencerMetadata.fromEntity(it) }
-        }
+        return NotiToInfluencerMetadata.fromEntity(entity)
     }
 
     fun findByInfluencerId(influencerId: String): List<NotiToInfluencerMetadata> {
-        return transaction {
-            NotiToInfluencerEntity.find {
-                NotiToInfluencerTable.influencerId eq influencerId
-            }.map { NotiToInfluencerMetadata.fromEntity(it) }
-        }
+        return NotiToInfluencerEntity.find {
+            NotiToInfluencerTable.influencerId eq influencerId
+        }.map { NotiToInfluencerMetadata.fromEntity(it) }
     }
 }
