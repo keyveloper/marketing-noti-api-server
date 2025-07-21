@@ -5,13 +5,14 @@ import org.example.marketingnotiapiserver.dto.NotiToInfluencerMetadata
 import org.example.marketingnotiapiserver.enums.NotiToInfluencerType
 import org.example.marketingnotiapiserver.table.NotiToInfluencerTable
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 class NotiToInfluencerRepository {
 
     fun save(
         message: String,
-        influencerId: String,
+        influencerId: UUID,
         notiToInfluencerType: NotiToInfluencerType
     ): NotiToInfluencerMetadata {
         val entity = NotiToInfluencerEntity.new {
@@ -22,7 +23,7 @@ class NotiToInfluencerRepository {
         return NotiToInfluencerMetadata.fromEntity(entity)
     }
 
-    fun findByInfluencerId(influencerId: String): List<NotiToInfluencerMetadata> {
+    fun findByInfluencerId(influencerId: UUID): List<NotiToInfluencerMetadata> {
         return NotiToInfluencerEntity.find {
             NotiToInfluencerTable.influencerId eq influencerId
         }.map { NotiToInfluencerMetadata.fromEntity(it) }

@@ -1,11 +1,12 @@
 package org.example.marketingnotiapiserver.dto
 
 import org.example.marketingnotiapiserver.enums.NotiToInfluencerType
+import java.util.*
 
 data class NotiToInfluencerMetadata(
     val id: Long,
     val message: String,
-    val influencerId: String,
+    val influencerId: UUID,
     val notiToInfluencerType: NotiToInfluencerType,
     val createdAt: Long,
     val lastModifiedAt: Long
@@ -14,7 +15,7 @@ data class NotiToInfluencerMetadata(
         fun of(
             id: Long,
             message: String,
-            influencerId: String,
+            influencerId: UUID,
             notiToInfluencerType: NotiToInfluencerType,
             createdAt: Long,
             lastModifiedAt: Long

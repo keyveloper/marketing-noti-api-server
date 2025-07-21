@@ -5,13 +5,14 @@ import org.example.marketingnotiapiserver.dto.NotiToAdvertiserMetadata
 import org.example.marketingnotiapiserver.enums.NotiToAdvertiserType
 import org.example.marketingnotiapiserver.table.NotiToAdvertiserTable
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 class NotiToAdvertiserRepository {
 
     fun save(
         message: String,
-        advertiserId: String,
+        advertiserId: UUID,
         notiToAdvertiserType: NotiToAdvertiserType
     ): NotiToAdvertiserMetadata {
         val entity = NotiToAdvertiserEntity.new {
@@ -22,7 +23,7 @@ class NotiToAdvertiserRepository {
         return NotiToAdvertiserMetadata.fromEntity(entity)
     }
 
-    fun findByAdvertiserId(advertiserId: String): List<NotiToAdvertiserMetadata> {
+    fun findByAdvertiserId(advertiserId: UUID): List<NotiToAdvertiserMetadata> {
         return NotiToAdvertiserEntity.find {
             NotiToAdvertiserTable.advertiserId eq advertiserId
         }.map { NotiToAdvertiserMetadata.fromEntity(it) }

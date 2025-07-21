@@ -7,6 +7,7 @@ import org.example.marketingnotiapiserver.enums.NotiToInfluencerType
 import org.example.marketingnotiapiserver.repository.NotiToInfluencerRepository
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class NotiToInfluencerService(
@@ -16,7 +17,7 @@ class NotiToInfluencerService(
 
     fun createNotiToInfluencer(
         message: String,
-        influencerId: String,
+        influencerId: UUID,
         notiToInfluencerType: NotiToInfluencerType
     ): CreateNotiToInfluencerResult {
         logger.info { "Creating notification to influencer: influencerId=$influencerId, type=$notiToInfluencerType" }
@@ -33,7 +34,7 @@ class NotiToInfluencerService(
     }
 
     fun getNotiToInfluencersByInfluencerId(
-        influencerId: String
+        influencerId: UUID
     ): GetNotiToInfluencersByInfluencerIdResult {
         logger.info { "Getting notifications to influencer by influencerId: influencerId=$influencerId" }
 

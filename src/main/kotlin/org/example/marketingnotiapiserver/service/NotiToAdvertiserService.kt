@@ -7,6 +7,7 @@ import org.example.marketingnotiapiserver.enums.NotiToAdvertiserType
 import org.example.marketingnotiapiserver.repository.NotiToAdvertiserRepository
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class NotiToAdvertiserService(
@@ -16,7 +17,7 @@ class NotiToAdvertiserService(
 
     fun createNotiToAdvertiser(
         message: String,
-        advertiserId: String,
+        advertiserId: UUID,
         notiToAdvertiserType: NotiToAdvertiserType
     ): CreateNotiToAdvertiserResult {
         logger.info { "Creating notification to advertiser: advertiserId=$advertiserId, type=$notiToAdvertiserType" }
@@ -33,7 +34,7 @@ class NotiToAdvertiserService(
     }
 
     fun getNotiToAdvertisersByAdvertiserId(
-        advertiserId: String
+        advertiserId: UUID
     ): GetNotiToAdvertisersByAdvertiserIdResult {
         logger.info { "Getting notifications to advertiser by advertiserId: advertiserId=$advertiserId" }
 
