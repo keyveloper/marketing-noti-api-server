@@ -1,8 +1,8 @@
 package org.example.marketingnotiapiserver.controller
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.example.marketingnotiapiserver.dto.CreateNotiToInfluencerApiRequest
-import org.example.marketingnotiapiserver.dto.CreateNotiToInfluencerResponseFromServer
+import org.example.marketingnotiapiserver.dto.UploadNotiToInfluencerApiRequest
+import org.example.marketingnotiapiserver.dto.UploadNotiToInfluencerResponseFromServer
 import org.example.marketingnotiapiserver.dto.GetNotiToInfluencersByInfluencerIdResponseFromServer
 import org.example.marketingnotiapiserver.enums.MSAServiceErrorCode
 import org.example.marketingnotiapiserver.service.NotiToInfluencerService
@@ -20,8 +20,8 @@ class NotiToInfluencerController(
 
     @PostMapping
     fun createNotiToInfluencer(
-        @RequestBody request: CreateNotiToInfluencerApiRequest
-    ): ResponseEntity<CreateNotiToInfluencerResponseFromServer> {
+        @RequestBody request: UploadNotiToInfluencerApiRequest
+    ): ResponseEntity<UploadNotiToInfluencerResponseFromServer> {
         logger.info { "POST /api/v1/noti-to-influencer - request: $request" }
 
         val result = notiToInfluencerService.createNotiToInfluencer(
@@ -30,7 +30,7 @@ class NotiToInfluencerController(
             notiToInfluencerType = request.notiToInfluencerType
         )
 
-        val response = CreateNotiToInfluencerResponseFromServer.of(
+        val response = UploadNotiToInfluencerResponseFromServer.of(
             httpStatus = HttpStatus.OK,
             msaServiceErrorCode = MSAServiceErrorCode.OK,
             errorMessage = null,

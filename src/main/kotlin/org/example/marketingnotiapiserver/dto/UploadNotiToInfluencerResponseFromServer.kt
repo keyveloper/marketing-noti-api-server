@@ -3,12 +3,12 @@ package org.example.marketingnotiapiserver.dto
 import org.example.marketingnotiapiserver.enums.MSAServiceErrorCode
 import org.springframework.http.HttpStatus
 
-data class CreateNotiToInfluencerResponseFromServer(
+data class UploadNotiToInfluencerResponseFromServer(
     override val httpStatus: HttpStatus,
     override val msaServiceErrorCode: MSAServiceErrorCode,
     override val errorMessage: String?,
     override val logics: String?,
-    val result: CreateNotiToInfluencerResult?
+    val result: UploadNotiToInfluencerResult?
 ): MSABusinessErrorResponse(httpStatus, msaServiceErrorCode, errorMessage, logics) {
     companion object {
         fun of(
@@ -16,9 +16,9 @@ data class CreateNotiToInfluencerResponseFromServer(
             msaServiceErrorCode: MSAServiceErrorCode,
             errorMessage: String?,
             logics: String?,
-            result: CreateNotiToInfluencerResult?
-        ): CreateNotiToInfluencerResponseFromServer {
-            return CreateNotiToInfluencerResponseFromServer(
+            result: UploadNotiToInfluencerResult?
+        ): UploadNotiToInfluencerResponseFromServer {
+            return UploadNotiToInfluencerResponseFromServer(
                 httpStatus = httpStatus,
                 msaServiceErrorCode = msaServiceErrorCode,
                 errorMessage = errorMessage,

@@ -1,7 +1,7 @@
 package org.example.marketingnotiapiserver.service
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.example.marketingnotiapiserver.dto.CreateNotiToInfluencerResult
+import org.example.marketingnotiapiserver.dto.UploadNotiToInfluencerResult
 import org.example.marketingnotiapiserver.dto.GetNotiToInfluencersByInfluencerIdResult
 import org.example.marketingnotiapiserver.enums.NotiToInfluencerType
 import org.example.marketingnotiapiserver.repository.NotiToInfluencerRepository
@@ -19,7 +19,7 @@ class NotiToInfluencerService(
         message: String,
         influencerId: UUID,
         notiToInfluencerType: NotiToInfluencerType
-    ): CreateNotiToInfluencerResult {
+    ): UploadNotiToInfluencerResult {
         logger.info { "Creating notification to influencer: influencerId=$influencerId, type=$notiToInfluencerType" }
 
         val notiMetadata = transaction {
@@ -30,7 +30,7 @@ class NotiToInfluencerService(
             )
         }
 
-        return CreateNotiToInfluencerResult.of(notiMetadata)
+        return UploadNotiToInfluencerResult.of(notiMetadata)
     }
 
     fun getNotiToInfluencersByInfluencerId(

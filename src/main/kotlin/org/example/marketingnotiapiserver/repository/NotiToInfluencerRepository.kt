@@ -1,7 +1,7 @@
 package org.example.marketingnotiapiserver.repository
 
 import org.example.marketingnotiapiserver.dto.NotiToInfluencerEntity
-import org.example.marketingnotiapiserver.dto.NotiToInfluencerMetadata
+import org.example.marketingnotiapiserver.dto.NotiToInfluencer
 import org.example.marketingnotiapiserver.enums.NotiToInfluencerType
 import org.example.marketingnotiapiserver.table.NotiToInfluencerTable
 import org.springframework.stereotype.Repository
@@ -14,18 +14,18 @@ class NotiToInfluencerRepository {
         message: String,
         influencerId: UUID,
         notiToInfluencerType: NotiToInfluencerType
-    ): NotiToInfluencerMetadata {
+    ): NotiToInfluencer {
         val entity = NotiToInfluencerEntity.new {
             this.message = message
             this.influencerId = influencerId
             this.notiToInfluencerType = notiToInfluencerType
         }
-        return NotiToInfluencerMetadata.fromEntity(entity)
+        return NotiToInfluencer.fromEntity(entity)
     }
 
-    fun findByInfluencerId(influencerId: UUID): List<NotiToInfluencerMetadata> {
+    fun findByInfluencerId(influencerId: UUID): List<NotiToInfluencer> {
         return NotiToInfluencerEntity.find {
             NotiToInfluencerTable.influencerId eq influencerId
-        }.map { NotiToInfluencerMetadata.fromEntity(it) }
+        }.map { NotiToInfluencer.fromEntity(it) }
     }
 }

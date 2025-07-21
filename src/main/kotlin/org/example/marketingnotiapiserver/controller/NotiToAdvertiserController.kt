@@ -1,8 +1,8 @@
 package org.example.marketingnotiapiserver.controller
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.example.marketingnotiapiserver.dto.CreateNotiToAdvertiserApiRequest
-import org.example.marketingnotiapiserver.dto.CreateNotiToAdvertiserResponseFromServer
+import org.example.marketingnotiapiserver.dto.UploadNotiToAdvertiserApiRequest
+import org.example.marketingnotiapiserver.dto.UploadNotiToAdvertiserResponseFromServer
 import org.example.marketingnotiapiserver.dto.GetNotiToAdvertisersByAdvertiserIdResponseFromServer
 import org.example.marketingnotiapiserver.enums.MSAServiceErrorCode
 import org.example.marketingnotiapiserver.service.NotiToAdvertiserService
@@ -20,8 +20,8 @@ class NotiToAdvertiserController(
 
     @PostMapping
     fun createNotiToAdvertiser(
-        @RequestBody request: CreateNotiToAdvertiserApiRequest
-    ): ResponseEntity<CreateNotiToAdvertiserResponseFromServer> {
+        @RequestBody request: UploadNotiToAdvertiserApiRequest
+    ): ResponseEntity<UploadNotiToAdvertiserResponseFromServer> {
         logger.info { "POST /api/v1/noti-to-advertiser - request: $request" }
 
         val result = notiToAdvertiserService.createNotiToAdvertiser(
@@ -30,7 +30,7 @@ class NotiToAdvertiserController(
             notiToAdvertiserType = request.notiToAdvertiserType
         )
 
-        val response = CreateNotiToAdvertiserResponseFromServer.of(
+        val response = UploadNotiToAdvertiserResponseFromServer.of(
             httpStatus = HttpStatus.OK,
             msaServiceErrorCode = MSAServiceErrorCode.OK,
             errorMessage = null,

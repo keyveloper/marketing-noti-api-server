@@ -1,7 +1,7 @@
 package org.example.marketingnotiapiserver.service
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.example.marketingnotiapiserver.dto.CreateNotiToAdvertiserResult
+import org.example.marketingnotiapiserver.dto.UploadNotiToAdvertiserResult
 import org.example.marketingnotiapiserver.dto.GetNotiToAdvertisersByAdvertiserIdResult
 import org.example.marketingnotiapiserver.enums.NotiToAdvertiserType
 import org.example.marketingnotiapiserver.repository.NotiToAdvertiserRepository
@@ -19,7 +19,7 @@ class NotiToAdvertiserService(
         message: String,
         advertiserId: UUID,
         notiToAdvertiserType: NotiToAdvertiserType
-    ): CreateNotiToAdvertiserResult {
+    ): UploadNotiToAdvertiserResult {
         logger.info { "Creating notification to advertiser: advertiserId=$advertiserId, type=$notiToAdvertiserType" }
 
         val notiMetadata = transaction {
@@ -30,7 +30,7 @@ class NotiToAdvertiserService(
             )
         }
 
-        return CreateNotiToAdvertiserResult.of(notiMetadata)
+        return UploadNotiToAdvertiserResult.of(notiMetadata)
     }
 
     fun getNotiToAdvertisersByAdvertiserId(
