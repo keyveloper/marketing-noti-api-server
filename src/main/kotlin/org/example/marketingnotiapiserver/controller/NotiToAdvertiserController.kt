@@ -9,6 +9,7 @@ import org.example.marketingnotiapiserver.service.NotiToAdvertiserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 @RestController
 @RequestMapping("/api/v1/noti-to-advertiser")
@@ -42,7 +43,7 @@ class NotiToAdvertiserController(
 
     @GetMapping("/advertiser/{advertiserId}")
     fun getNotiToAdvertisersByAdvertiserId(
-        @PathVariable advertiserId: String
+        @PathVariable advertiserId: UUID
     ): ResponseEntity<GetNotiToAdvertisersByAdvertiserIdResponseFromServer> {
         logger.info { "GET /api/v1/noti-to-advertiser/advertiser/$advertiserId" }
 
