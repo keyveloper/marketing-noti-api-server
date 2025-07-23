@@ -1,0 +1,47 @@
+### NotiToInfluencer API Tests
+
+### 1. Create NotiToInfluencer - ACCEPT_REVIEW
+POST http://localhost:8085/api/v1/noti-to-influencer
+Content-Type: application/json
+
+{
+  "message": "리뷰가 승인되었습니다!",
+  "influencerId": "660e8400-e29b-41d4-a716-446655440001",
+  "notiToInfluencerType": "ACCEPT_REVIEW"
+}
+
+### 2. Create NotiToInfluencer - NEW_DM
+POST http://localhost:8085/api/v1/noti-to-influencer
+Content-Type: application/json
+
+{
+  "message": "새로운 DM이 도착했습니다!",
+  "influencerId": "660e8400-e29b-41d4-a716-446655440001",
+  "notiToInfluencerType": "NEW_DM"
+}
+
+### 3. Create NotiToInfluencer - AD_DEADLINE
+POST http://localhost:8085/api/v1/noti-to-influencer
+Content-Type: application/json
+
+{
+  "message": "광고 마감일이 다가옵니다!",
+  "influencerId": "660e8400-e29b-41d4-a716-446655440001",
+  "notiToInfluencerType": "AD_DEADLINE"
+}
+
+### 4. Get NotiToInfluencers by InfluencerId
+GET http://localhost:8085/api/v1/noti-to-influencer/influencer/660e8400-e29b-41d4-a716-446655440001
+
+### 5. Create NotiToInfluencer for different influencer
+POST http://localhost:8085/api/v1/noti-to-influencer
+Content-Type: application/json
+
+{
+  "message": "다른 인플루언서의 알림입니다.",
+  "influencerId": "660e8400-e29b-41d4-a716-446655440002",
+  "notiToInfluencerType": "ACCEPT_REVIEW"
+}
+
+### 6. Get NotiToInfluencers for different influencer
+GET http://localhost:8085/api/v1/noti-to-influencer/influencer/660e8400-e29b-41d4-a716-446655440002

@@ -1,0 +1,57 @@
+### NotiToAdvertiser API Tests
+
+### 1. Create NotiToAdvertiser - NEW_FOLLOWER
+POST http://localhost:8085/api/v1/noti-to-advertiser
+Content-Type: application/json
+
+{
+  "message": "새로운 팔로워가 생겼습니다!",
+  "advertiserId": "550e8400-e29b-41d4-a716-446655440001",
+  "notiToAdvertiserType": "NEW_FOLLOWER"
+}
+
+### 2. Create NotiToAdvertiser - NEW_AD_LIKE
+POST http://localhost:8085/api/v1/noti-to-advertiser
+Content-Type: application/json
+
+{
+  "message": "광고에 좋아요가 눌렸습니다!",
+  "advertiserId": "550e8400-e29b-41d4-a716-446655440001",
+  "notiToAdvertiserType": "NEW_AD_LIKE"
+}
+
+### 3. Create NotiToAdvertiser - NEW_DM
+POST http://localhost:8085/api/v1/noti-to-advertiser
+Content-Type: application/json
+
+{
+  "message": "새로운 DM이 도착했습니다!",
+  "advertiserId": "550e8400-e29b-41d4-a716-446655440001",
+  "notiToAdvertiserType": "NEW_DM"
+}
+
+### 4. Create NotiToAdvertiser - NEW_AD_APPLICATION
+POST http://localhost:8085/api/v1/noti-to-advertiser
+Content-Type: application/json
+
+{
+  "message": "새로운 광고 신청이 들어왔습니다!",
+  "advertiserId": "550e8400-e29b-41d4-a716-446655440001",
+  "notiToAdvertiserType": "NEW_AD_APPLICATION"
+}
+
+### 5. Get NotiToAdvertisers by AdvertiserId
+GET http://localhost:8085/api/v1/noti-to-advertiser/advertiser/550e8400-e29b-41d4-a716-446655440001
+
+### 6. Create NotiToAdvertiser for different advertiser
+POST http://localhost:8085/api/v1/noti-to-advertiser
+Content-Type: application/json
+
+{
+  "message": "다른 광고주의 알림입니다.",
+  "advertiserId": "550e8400-e29b-41d4-a716-446655440002",
+  "notiToAdvertiserType": "NEW_FOLLOWER"
+}
+
+### 7. Get NotiToAdvertisers for different advertiser
+GET http://localhost:8085/api/v1/noti-to-advertiser/advertiser/550e8400-e29b-41d4-a716-446655440002
